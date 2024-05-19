@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <!-- TipoAutor -->
+  <xs:simpleType name="TipoAutor">
+    <xs:restriction base="xs:string">
+      <xs:pattern value=".*examen.*"/> <!-- .* todos los caracteres es como any -->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- TipoFecha -->
+  <xs:simpleType name="TipoFecha">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{4} - [0-9]{4}" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- TipoCita -->
+  <xs:complexType name="TipoCita">
+    <xs:sequence>
+        <xs:element name="autor" type="TipoAutor"/>
+        <xs:element name="fechas" type="TipoFecha"/>
+        <xs:element name="texto" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+<!-- Elemento Raíz -->
+  <xs:element name="citas">
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="cita" minOccurs="3" maxOccurs="30" type="TipoCita"/>
+        </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

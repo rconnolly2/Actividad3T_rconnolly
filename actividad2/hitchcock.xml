@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<hitchcock
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  xsi:noNamespaceSchemaLocation="hitchcock.xsd">
+  <estudios>
+    <estudio id="warner">
+      <nombre>Warner Bros.</nombre>
+      <fecha dato="nacimiento">1923</fecha>
+    </estudio>
+    <estudio id="paramount">
+      <nombre>Paramount Pictures</nombre>
+      <fecha dato="nacimiento">1914</fecha>
+    </estudio>
+  </estudios>
+
+  <actores>
+    <actor nombre="James Stewart" nacimiento="1908" muerte="1997" />
+    <actor nombre="Grace Kelly" nacimiento="1929" muerte="1982" />
+    <actor nombre="Farley Granger" nacimiento="1925" muerte="2011" />
+    <actor nombre="Ruth Roman" nacimiento="1922" muerte="1999" />
+    <actor nombre="Kim Novack" nacimiento="1933" muerte="" />
+    <actor nombre="Anthony Perkins" nacimiento="1932" muerte="1992" />
+    <actor nombre="Vera Miles" nacimiento="1929" muerte="" />
+  </actores>
+
+  <peliculas>
+    <pelicula>
+      <titulo lang="es">La ventana indiscreta</titulo>
+      <titulo lang="en">Rear Window</titulo>
+      <fecha dato="estreno">1954</fecha>
+      <estudios nombre="paramount" />
+      <oscar nominaciones="4" premios="0" />
+      <actores>
+        <actor>James Stewart</actor>
+        <actriz>Grace Kelly</actriz>
+      </actores>
+    </pelicula>
+
+    <pelicula>
+      <titulo lang="es">Extraños en un tren</titulo>
+      <titulo lang="en">Strangers on a Train</titulo>
+      <fecha dato="estreno">1951</fecha>
+      <estudios nombre="warner" />
+      <oscar nominaciones="1" premios="0" />
+      <actores>
+        <actor>Farley Granger</actor>
+        <actriz>Ruth Roman</actriz>
+      </actores>
+    </pelicula>
+
+    <pelicula>
+      <titulo lang="es">Vértigo</titulo>
+      <titulo lang="en">Vertigo</titulo>
+      <fecha dato="estreno">1958</fecha>
+      <estudios nombre="paramount" />
+      <oscar nominaciones="2" premios="0" />
+      <actores>
+        <actor>James Stewart</actor>
+        <actriz>Kim Novack</actriz>
+      </actores>
+    </pelicula>
+
+    <pelicula>
+      <titulo lang="es">Psicosis</titulo>
+      <titulo lang="en">Psycho</titulo>
+      <fecha dato="estreno">1960</fecha>
+      <estudios nombre="paramount" />
+      <oscar nominaciones="4" premios="0" />
+      <actores>
+        <actor>Anthony Perkins</actor>
+        <actriz>Vera Miles</actriz>
+      </actores>
+    </pelicula>
+  </peliculas>
+</hitchcock>
+
+<!--A partir de l'xml hitchcock.xml escriu les expressions XPath que
+retornen exactament les respostes indicades en els quadres. Escriu totes les
+expressions XPath en un únic fitxer de text que es digui A5.txt, numerant les
+respostes. -->
+
+<!--2.1. 5.1 Noms de tots els actors i actrius:-->
+<!--//pelicula/actores //actor/text | //actriz/text-->
+<!--2.2. Títols en anglès de totes les pel·lícules:-->
+<!--//titulo[@lang="en"]/text()-->
+<!--2.3. Nombre de nominacions a l'Òscar de les pel·lícules de James Stewart:-->
+<!--//pelicula[actores/actor/text() = 'James Stewart']/oscar/@nominaciones-->
+<!--2.4. Títols en espanyol de les pel·lícules de la Paramount:-->
+<!--//pelicula/estudios[@nombre = 'paramount']/../titulo[@lang="es"]/text()-->
+<!--2.5. Nombre complet de l'estudi de les pel·lícules amb quatre nominacions:-->
+<!--//estudios/estudio[@id=//pelicula[oscar/@nominaciones="4"]/estudios/@nombre]/nombre/text()-->
+<!--2.6. Any de naixement de l'actriu de la pel·lícula de 1951:-->
+<!--//actores/actor/@nacimiento[/../@nombre = //pelicula/actores/actriz/text()[/../../fecha = "1951"]]    NO FUNCIONA ACABAR--> 
