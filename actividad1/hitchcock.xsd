@@ -2,7 +2,7 @@
   <!-- TipoEstudios -->
   <xs:complexType name="TipoEstudios">
     <xs:sequence>
-        <xs:element name="estudio" maxOccurs="unbounded">
+        <xs:element name="estudio" maxOccurs="99"> <!--1.1. El nombre d’estudis és inferior a 100 i superior a 1.-->
             <xs:complexType>
                 <xs:sequence>
                     <xs:element name="nombre" maxOccurs="1" type="xs:string"/>
@@ -14,11 +14,19 @@
     </xs:sequence>
   </xs:complexType>
 
+  <!--TipoAtrDato-->
+  <xs:simpleType name="TipoAtrDato">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="nacimiento"/> <!--1.6. L’atribut dato de l’element fecha sols pot tindre com a valors nacimiento o muerte.-->
+        <xs:enumeration value="muerte"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <!-- TipoFecha -->
   <xs:complexType name="TipoFecha">
     <xs:simpleContent>
         <xs:extension base="xs:gYear">
-            <xs:attribute name="dato" type="xs:string" use="required"/>
+            <xs:attribute name="dato" type="TipoAtrDato" use="required"/>
         </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
@@ -29,20 +37,20 @@
         <xs:element name="pelicula" maxOccurs="unbounded">
             <xs:complexType>
                 <xs:sequence>
-                    <xs:element name="titulo" minOccurs="2" maxOccurs="unbounded" type="TipoTituloPelicula"/>
+                    <xs:element name="titulo" minOccurs="2" maxOccurs="2" type="TipoTituloPelicula"/> <!--1.2. Les películes sols poden tindre dos títols.-->
                     <xs:element name="fecha" maxOccurs="1" type="TipoFecha"/>
                     <xs:element name="estudios" maxOccurs="1" type="TipoEstudiosPelicula"/>
-                    <xs:element name="oscar" maxOccurs="1">
+                    <xs:element name="oscar" minOccurs="0"> <!--1.5. L’element oscar és opcional.-->
                         <xs:complexType>
                             <xs:attribute name="nominaciones" type="xs:integer" use="required"/>
-                            <xs:attribute name="premios" type="xs:integer" use="required"/>
+                            <xs:attribute name="premios" type="xs:integer" use="optional" default="0"/> <!--1.4. L’atribut premios de l’element oscar és opcional i té com a valor per defecte el 0.-->
                         </xs:complexType>
                     </xs:element>
                     <xs:element name="actores" maxOccurs="1">
                         <xs:complexType>
                             <xs:sequence>
-                                <xs:element name="actor" maxOccurs="1" type="xs:string"/>
-                                <xs:element name="actriz" maxOccurs="1" type="xs:string"/>
+                                <xs:element name="actor" minOccurs="0" maxOccurs="unbounded" type="TipoAtrNombre"/>
+                                <xs:element name="actriz" minOccurs="0" maxOccurs="unbounded" type="TipoAtrNombre"/>
                             </xs:sequence>
                         </xs:complexType>
                     </xs:element>
@@ -75,13 +83,27 @@
     <xs:sequence>
         <xs:element name="actor" maxOccurs="unbounded">
             <xs:complexType>
-                <xs:attribute name="nombre" type="xs:string" use="required"/>
-                <xs:attribute name="nacimiento" type="xs:gYear" use="required"/>
+                <xs:attribute name="nombre" type="TipoAtrNombre" use="required"/>
+                <xs:attribute name="nacimiento" type="TipoNacimiento" use="required"/>
                 <xs:attribute name="muerte" type="xs:string"/>
             </xs:complexType>
         </xs:element>
     </xs:sequence>
   </xs:complexType>
+
+  <!--TipoAtrNombre-->
+  <xs:simpleType name="TipoAtrNombre">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="\S+ \S+"></xs:pattern> <!--1.7. El nom d’un actor està format per dues paraules separades per un espai.-->
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- TipoNacimiento -->
+  <xs:simpleType name="TipoNacimiento">
+    <xs:restriction base="xs:gYear">
+      <xs:minInclusive value="1900"/> <!--1.3. Els actors no poden haver nascut abans de 1900.-->
+    </xs:restriction>
+  </xs:simpleType>
 
     <!-- Elemento Raíz -->
   <xs:element name="hitchcock">
