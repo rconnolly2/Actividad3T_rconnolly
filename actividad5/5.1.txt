@@ -1,0 +1,2 @@
+1.1. Quants partits han jugat els "Lleons"?
+count(//partit[equip/nom = 'Lleons'])

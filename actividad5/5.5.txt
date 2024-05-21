@@ -1,0 +1,2 @@
+1.5. Quina és la mitjana de gols per partit dels "Cavalls"?
+count(//jornada/partit/equip[nom = "Cavalls"]/gols/jugador) div count(//jornada/partit/equip[nom = "Cavalls"]) 

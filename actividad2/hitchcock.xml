@@ -78,7 +78,7 @@ expressions XPath en un únic fitxer de text que es digui A5.txt, numerant les
 respostes. -->
 
 <!--2.1. 5.1 Noms de tots els actors i actrius:-->
-<!--//pelicula/actores //actor/text | //actriz/text-->
+<!--//pelicula/actores //actor/text() | //actriz/text()-->
 <!--2.2. Títols en anglès de totes les pel·lícules:-->
 <!--//titulo[@lang="en"]/text()-->
 <!--2.3. Nombre de nominacions a l'Òscar de les pel·lícules de James Stewart:-->

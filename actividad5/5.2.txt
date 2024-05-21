@@ -1,0 +1,2 @@
+1.2. Quins partits han jugat a casa els "Elefants"?
+count(//partit[equip[@juga='local']/nom = 'Elefants'])

@@ -1,0 +1,2 @@
+1.4. En quines jornades els"Lleons" han jugat a casa?
+//jornada[partit/equip[@juga = "local" and nom = "Lleons"]]/@num

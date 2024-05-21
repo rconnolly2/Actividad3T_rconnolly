@@ -1,0 +1,2 @@
+1.7. Llista els jugadors que fet gols el dia 25-12-2019?
+//partit/equip[dia='25-12-2019']/gols/jugador
